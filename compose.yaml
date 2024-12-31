@@ -1,0 +1,22 @@
+services:
+  config-server:
+    build:
+      context: ./config-server
+    container_name: config-server
+    ports:
+      - 8888:8888
+    depends_on:
+      - eureka-server
+    networks:
+      - spring-cloud-network
+  eureka-server:
+    build:
+      context: ./eureka-server
+    container_name: eureka-server
+    ports:
+      - 8761:8761
+    networks:
+      - spring-cloud-network
+networks:
+  spring-cloud-network:
+    driver: bridge

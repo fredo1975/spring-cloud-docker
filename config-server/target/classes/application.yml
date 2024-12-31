@@ -1,0 +1,26 @@
+server:
+  port: 8888
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/fredo1975/spring-cloud-server-config.git
+          skipSslValidation: true
+          clone-on-start: true
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    serviceUrl:
+      defaultZone: http://eureka-server:8761/eureka/
+  instance:
+    hostname: eureka-server
